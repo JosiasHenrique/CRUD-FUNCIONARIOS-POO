@@ -137,7 +137,12 @@ public class ListaFuncionariosView extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnAddActionPerformed
 
     private void jBtnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSairActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            fc.salvarDados();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ListaFuncionariosView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.exit(0);
     }//GEN-LAST:event_jBtnSairActionPerformed
 

@@ -3,26 +3,25 @@ package com.josias.crudswing.controller;
 import com.josias.crudswing.model.Funcionario;
 import com.josias.crudswing.model.FuncionarioDAO;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Collection;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class FuncionarioController {
 
-    public void criarFuncionario(String cod, String nome, double salario) throws IOException {
-        new FuncionarioDAO().create(new Funcionario(cod, nome, salario));
+    public void criarFuncionario(String cod, String nome, double salario) throws FileNotFoundException {
+        FuncionarioDAO.getInstance().create(new Funcionario(cod, nome, salario));
     }
-    
+
     public Funcionario buscarFuncionario(String cod) throws FileNotFoundException {
-        return new FuncionarioDAO().buscarFuncionario(cod);
+        return FuncionarioDAO.getInstance().buscarFuncionario(cod);
     }
 
     public void carregarFuncionarios(JTable jTabela) throws FileNotFoundException {
 
         DefaultTableModel dtm = (DefaultTableModel) jTabela.getModel();
 
-        FuncionarioDAO func = new FuncionarioDAO();
+        FuncionarioDAO func = FuncionarioDAO.getInstance();
 
         Collection<Funcionario> funcionarios = func.listarFuncionarios();
 
@@ -38,5 +37,9 @@ public class FuncionarioController {
             jTabela.setValueAt(f.getSalario(), posicaoLinha, 2);
             posicaoLinha += 1;
         }
+    }
+
+    public void salvarDados() throws FileNotFoundException {
+        FuncionarioDAO.getInstance().sair();
     }
 }

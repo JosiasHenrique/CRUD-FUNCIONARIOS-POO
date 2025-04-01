@@ -63,7 +63,7 @@ public class FuncionarioDAO {
         return null;
     }
 
-    public void sair(Collection<Funcionario> funcionarios) {
+    public void sair() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ARQUIVO))) {
             for (Funcionario f : funcionarios) {
                 writer.println(f.getCod());
